@@ -8,10 +8,8 @@ const connectDB = require('./config/db');
 const fileUpload = require('express-fileupload');
 
 // routes
-const productRoutes = require('./routes/productRoutes');
 const schemaRoutes = require('./routes/schemaRoutes');
 const sectionRoutes = require('./routes/sectionRoutes');
-const companyRoutes = require('./routes/companyRoutes');
 
 
 const app = express();
@@ -35,10 +33,8 @@ app.use(fileUpload({
 }));
 
 // 3. Mount Routes
-app.use('/', productRoutes);
 app.use('/', schemaRoutes);
 app.use('/', sectionRoutes);
-app.use('/', companyRoutes);
 
 // 4. Start Server
 async function startServer() {
