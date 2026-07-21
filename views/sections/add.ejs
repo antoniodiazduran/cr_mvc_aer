@@ -1,0 +1,186 @@
+<%- include('../header.ejs') %>
+<div class="w3-padding-32 w3-mobile"></div>
+<h4>&nbsp;<%= title + '/'  + section %></h4>
+<form action="<%=breadcrumbs%>" method="post" class="w3-container" enctype="multipart/form-data">
+        <input 
+            type="hidden" 
+            name="section" 
+            id="section" 
+            value="<%= section %>"
+        >
+        <input type="hidden" name="mode" id="mode" value="data">
+
+        <% sections.forEach(stru => { %>
+                <% if(stru.htmltype!='timestamp') {%>           
+                <label><%= stru.lablel %></label>  
+                <% } %>
+                <% if(stru.htmltype=='text' || stru.htmltype=='password'  || stru.htmltype=='email' || stru.htmltype=='button') { %>
+                    <input 
+                    class="w3-input" 
+                    type="<%= stru.htmltype %>" 
+                    name="<%= stru.fieldName %>" 
+                    id="<%= stru.idName %>"  
+                    style="width:<%= stru.fieldLength!=0?stru.fieldLength:'' %>px;" 
+                    placeholder="<%= stru.placeholder %>" 
+                    style="<%= stru.styleScript %>" 
+                    <% if(stru.fieldEvent!='') { %> <%=stru.fieldEvent%>="<%=stru.functionName%>" <% } %> 
+                    <%= stru.required %> 
+                    /> 
+                    <p>
+                <% } %>
+                <% if(stru.htmltype == 'number') { %>
+                    <input 
+                    class="w3-input" 
+                    type="<%= stru.htmltype %>" 
+                    name="<%= stru.fieldName %>" 
+                    id="<%= stru.idName %>"
+                    style="width:<%= stru.fieldLength!=0?stru.fieldLength:'' %>px;" 
+                    placeholder="<%= stru.placeholder %>" 
+                    pattern="[0-9]*" 
+                    style="<%= stru.styleScript %>" 
+                     <% if(stru.fieldEvent!='') { %> <%=stru.fieldEvent%>="<%=stru.functionName%>" <% } %> 
+                    <%= stru.required %> 
+                    /> 
+                    <p>
+                <% } %>
+                <% if(stru.htmltype=='date') { %>
+                    <input 
+                    class="w3-input  <%= stru.className %>" 
+                    type="<%= stru.htmltype %>" 
+                    name="<%= stru.fieldName %>" 
+                    id="<%= stru.idName%>" 
+                    style="width:200px;<%= stru.styleScript %>" 
+                    value=""  
+                    <% if(stru.fieldEvent!='') { %> <%=stru.fieldEvent%>="<%=stru.functionName%>" <% } %> 
+                    <%=stru.required%> 
+                    />
+                    <p>
+                <% } %>
+                <% if(stru.htmltype=='tel') { %>
+                    <input 
+                    class="w3-input  <%= stru.className %>" 
+                    type="<%= stru.htmltype %>" 
+                    name="<%= stru.fieldName %>" 
+                    id="<%= stru.idName %>" 
+                    style="width:<%= stru.fieldLength %>px;"  
+                    placeholder="<%= stru.placeholder %>"  
+                     <% if(stru.fieldEvent!='') { %> <%=stru.fieldEvent%>="<%=stru.functionName%>" <% } %> 
+                    <%= stru.required %>
+                    />  
+                    <p>
+                <% } %>
+                <% if(stru.htmltype=='select') { %>
+                    <select class="w3-select" name="<%= stru.fieldName %>" id="<%= stru.idName %>" style="width:150px;">
+                        <% stru.initialValue.split(',').forEach(opti1 => { %>
+                            <option value="<%= opti1 %>"> <%= opti1 %>
+                        <% }); %>
+                    </select>
+                    <p>
+                <% } %>
+                <% if(stru.htmltype=='radio') { %>
+                    <br>
+                    <% stru.initialValue.split(',').forEach(opti2 => { %>
+                        <input 
+                        class="w3-radio" 
+                        type="<%= stru.htmltype %>"
+                        name="<%= stru.fieldName %>" 
+                        id="<%= stru.idName %>" 
+                        value="<%= opti2 %>"
+                        />
+                        &nbsp; 
+                        <%= opti2 %> 
+                        &nbsp;
+                        <p> 
+                    <% }); %>
+                    <p>
+                <% } %>
+                <% if(stru.htmltype=='checkbox') { %>
+                    <br>
+                    <% stru.initialValue.split(',').forEach(opti2 => { %>
+                        <input 
+                        class="w3-checkbox" 
+                        type="<%= stru.htmltype %>" 
+                        name="<%= stru.fieldName %>" 
+                        id="<%= stru.idName %>" 
+                        value="<%= opti2 %>"
+                        />
+                        &nbsp; <%= opti2%> &nbsp;
+                        <p> 
+                    <% }); %>
+                    <p>
+                <% } %>
+                <% if(stru.htmltype=='textarea') { %>
+                    <textarea class="w3-input" cols="40" rows="5" name="<%= stru.fieldName %>" id="<%= stru.idName %>"><%= stru.initialValue%></textarea>
+                    </h4>
+                    <p>
+                <% } %>
+                <% if(stru.htmltype=='join') { %>
+                    <select class="w3-select" name="<%= stru.fieldName %>" id="<%= stru.idName %>" style="width:300px">
+                        <option>
+                        <% joinFields.forEach(joinF => { %>
+                            <!--<option value="{{@joinF.id %>">{{@joinF.linked}}//-->
+                            <option value="<%= joinF.linked %>"><%= joinF.linked%>
+                        <% }); %>
+                    </select>
+                    <p>
+                <% } %>
+                <% if(stru.htmltype=='dropdown') { %>
+                    <select class="w3-select" name="<%= stru.fieldName %>" id="<%= stru.idName %>" style="width:300px">
+                        <option>
+                        <% dropdowns[stru.idName].forEach((ddF) => { %>
+                             <option value="<%= ddF[dropdownValue[stru.idName].split(":")[0]] %>"><%= ddF[dropdownValue[stru.idName].split(":")[1]] %>
+                        <% }); %>
+                    </select>
+                    <p>
+                <% } %>
+                <% if(stru.htmltype=='hidden') { %> 
+                    <input 
+                    class="w3-hidden" 
+                    type="hidden" 
+                    name="<%= stru.fieldName%>" 
+                    id="<%= stru.idName%>" 
+                    value="<%= stru.initialValue%>" 
+                    <%= stru.required%> 
+                    >       
+                <% } %>
+                <% if(stru.htmltype=='timestamp') { %> 
+                    <input 
+                    class="w3-hidden" 
+                    type="hidden" 
+                    name="<%= stru.fieldName%>" 
+                    id="<%= stru.idName%>" 
+                    value="<%=  Date.now()%>" 
+                    <%= stru.required%> 
+                    >       
+                <% } %>
+                <% if(stru.htmltype=='file') { %>
+                    <input type="<%= stru.htmltype%>" name="file_<%= stru.fieldName%>" id="file_<%= stru.idName%>">
+                <% } %>
+                <% if (stru.htmltype == 'array') { %>
+                    <input type="hidden" 
+                    name="array_<%= stru.fieldName %>" 
+                    id="array_<%= stru.idName%>" 
+                    value="<%=stru.initialValue%>"
+                    >
+                    <p>&nbsp;</p>
+                <% } %>
+                <p>
+        <% }); %>
+       
+        <p class="w3-padding-16"></p>
+        <% if (rowcount> 0) { if(mode == 'new') {  %>
+            <input class="w3-button w3-green" type="submit" value="Submit">
+        <% } else { %>
+            <input class="w3-button w3-green" type="submit" value="Update">
+	    <% }} else { %>
+            <h4>No section(s) found!</h4>
+        <% } %>
+       
+	<br><br>
+        
+</form>
+<!--
+value="[{&quot;createdAt&quot;:&quot;2026-06-25&quot;,&quot;notes&quot;:&quot;Document created&quot;,&quot;createdBy&quot;:&quot;&quot;}]"
+value="[{&#34;createdAt&#34;:&#34;2026-06-25&#34;,&#34;notes&#34;:&#34;Document created&#34;,&#34;createdBy&#34;:&#34;&#34;}]"
+-->
+<%- include('../footer.ejs') %>

@@ -1,0 +1,115 @@
+<%- include('../header.ejs') %>
+
+<div class="w3-container w3-padding-16">
+    <br><br>
+    <h2>
+       &nbsp; Schemas
+        <a href="/schemas/delete/<%= schema._id%>"><i class="material-icons" title="Delete">delete</i></a>
+    </h2>
+        <form action="" method="post" class="w3-container">
+            <label>Sections</label>
+            <input class="w3-input" list="_schemas" name="schema" id="schema"  value="<%= schema.schema %>" required>
+            <datalist id="_schemas" style="width:150px;">
+                <option>
+            </datalist> 
+            <br><br>
+            <label>Type:</label>
+			<select class="w3-select" name="htmltype" id="htmltype" required>
+                <option value="text" <%= (schema.htmltype=='text'?'selected':'') %>>text
+                <option value="number" <%= (schema.htmltype=='number'?'selected':'') %>>number
+                <option value="radio" <%= (schema.htmltype=='radio'?'selected':'') %>>radio
+                <option value="checkbox" <%= (schema.htmltype=='checkbox'?'selected':'') %>>checkbox
+                <option value="reset" <%= (schema.htmltype=='reset'?'selected':'') %>>reset
+                <option value="password" <%= (schema.htmltype=='password'?'selected':'') %>>password
+                <option value="select" <%= (schema.htmltype=='select'?'selected':'') %>>select
+                <option value="textarea" <%= (schema.htmltype=='textarea'?'selected':'') %>>textarea
+                <option value="button" <%= (schema.htmltype=='button'?'selected':'') %>>button
+                <option value="email" <%= (schema.htmltype=='email'?'selected':'') %>>email
+                <option value="date" <%= (schema.htmltype=='date'?'selected':'') %>>date
+                <option value="tel" <%= (schema.htmltype=='tel'?'selected':'') %>>tel
+                <option value="array" <%= (schema.htmltype=='array'?'selected':'') %>>array
+                <option value="hidden" <%= (schema.htmltype=='hidden'?'selected':'') %> >hidden
+                <option value="file" <%= (schema.htmltype=='file'?'selected':'') %>>file
+                <option value="dropdown" <%= (schema.htmltype=='dropdown'?'selected':'') %>>dropdown
+                <option value="timestamp" <%= (schema.htmltype=='timestamp'?'selected':'') %>>timestamp
+            </select>
+            <br><br>
+            <label>SQL Type:</label>
+                <select class="w3-select" name="sql" id="sql" required>
+                    <option value="text" <%= (schema.sql=='text'?'selected':'') %> >text
+                    <option value="integer" <%= (schema.sql=='inteer'?'selected':'') %>>integer
+                    <option value="REAL" <%= (schema.sql=='real'?'selected':'') %>>real
+                    <option value="BLOB" <%= (schema.sql=='blob'?'selected':'') %>>blob
+                </select>
+                <br><br>
+                <label>Display Label:</label>
+                    <input class="w3-input" type="text" name="lablel" id="lablel" value="<%= schema.lablel %>" placeholder="Display label"/> <br><br> 
+                <label>Field Name:</label>
+                    <input class="w3-input" type="text" name="fieldName" id="fieldNname" value="<%= schema.fieldName %>"  placeholder="Field name"/> <br><br>
+                <label>Field Id:</label>
+                    <input class="w3-input" type="text" name="idName" id="idName" value="<%= schema.idName %>" placeholder="Field id"/> <br><br>
+                <label>Field Length:</label>
+                    <input class="w3-input" type="text" name="fieldLength" id="fieldLength" value="<%= schema.fieldLength %>" placeholder="Field length in px" size=""/> <br><br>
+                <label>Required:</label>
+                    <select class="w3-select" name="required" id="required">
+                        <option value="no" <%= (schema.required=='no'?'selected':'') %>>
+                        <option value="required" <%= (schema.required=='required'?'selected':'') %>>required
+                    </select>
+                <br><br>
+                <label>Field Order:</label>
+                    <input class="w3-input" type="number" name="fieldOrder" id="fieldOrder" value="<%= schema.fieldOrder %>" placeholder="Field Order" size="20"/> <br><br> 
+                <label>Initial value:</label>
+                    <input class="w3-input" type="text" name="initialValue"  id="initialValue" value="<%= schema.initialValue %>" placeholder="JSON format: Arrays '[{field1:collection,field2:type,..}]'' or Dropdown '{field:collection}'"/>
+                    <br><br>
+                <label>Class Name:</label>
+                    <input class="w3-input" type="text" name="className" id="className" value="<%= schema.className %>" placeholder="Class name"/> <br><br>  
+                <label>Style Script:</label>
+                    <input class="w3-input" type="text" name="styleScript" id="styleScript" value="<%= schema.styleScript %>" placeholder="Style script"/> <br><br> 
+                <label>Event:</label>
+                    <select class="w3-select" name="fieldEvent" id="fieldEvent">
+                        <option value="" <%= (schema.fieldEvent==''?'selected':'') %>>
+                        <option value="onchange" <%= (schema.fieldEvent=='onchange'?'selected':'') %>>onchange
+                        <option value="onfocus" <%= (schema.fieldEvent=='onfocus'?'selected':'') %>>onfocus
+                        <option value="onblur" <%= (schema.fieldEvent=='onblur'?'selected':'') %>>onblur
+                        <option value="onreset" <%= (schema.fieldEvent=='onreset'?'selected':'') %>>onreset
+                        <option value="onselect" <%= (schema.fieldEvent=='onselect'?'selected':'') %>>onselect
+                        <option value="onsubmit" <%= (schema.fieldEvent=='onsumbit'?'selected':'') %>>onsubmit
+                        <option value="oninput" <%= (schema.fieldEvent=='oninput'?'selected':'') %>>oninput
+                        <option value="onkeydown" <%= (schema.fieldEvent=='onkeydown'?'selected':'') %>>onkeydown
+                        <option value="onkeypress" <%= (schema.fieldEvent=='onkeypress'?'selected':'') %>>onkeypress
+                        <option value="onkeyup" <%= (schema.fieldEvent=='onkeyup'?'selected':'') %>>onkeyup
+                        <option value="onclick" <%= (schema.fieldEvent=='onclick'?'selected':'') %>>onclick
+                        <option value="ondblclick" <%= (schema.fieldEvent=='ondblclick'?'selected':'') %>>ondblclick
+                        <option value="onmouseover" <%= (schema.fieldEvent=='onmouseover'?'selected':'') %>>onmouseover
+                    </select>
+                <br><br>
+                <label>Function Name:</label>
+                    <input class="w3-input" type="text" name="functionName" id="functionName" value="<%= schema.functionName %>" placeholder="Function name"/> <br><br>  
+                <label>Place Holder:</label>
+                    <input class="w3-input" type="text" name="placeholder" id="placeholder" value="<%= schema.placeholder %>" placeholder="For Dropdown fields 'display:value' JSON syntax"/> <br><br>   
+                <label>Visible: </label>
+                    <select class="w3-select" name="fieldVisible" id="fieldVisible">
+                        <option>
+                        <option value="yes" <%= (schema.fieldVisible=='yes'?'selected':'') %>>Yes
+                        <option value="no"  <%= (schema.fieldVisible=='no'?'selected':'') %>>No
+                    </select>
+                <br><br>
+                <label>Column Visible: </label>
+                    <select class="w3-select" name="columnVisible" id="columnVisible">
+                        <option>
+                        <option value="yes" <%= (schema.columnVisible=='yes'?'selected':'') %>>Yes
+                        <option value="no"  <%= (schema.columnVisible=='no'?'selected':'') %>>No
+                    </select>
+                <br><br>   
+                    <input type="hidden" name="mode" value="config" />
+                    <input type="hidden" name="edit" value="edit" />        
+                    <input type="hidden" name="id" value="<%= schema._id%>" />
+		        <br><br>
+		        <br>
+                    <input class="w3-button w3-orange" type="submit" value="Update">
+        </form>
+</div>
+
+
+
+<%- include('../footer.ejs') %>

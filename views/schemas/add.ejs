@@ -1,0 +1,112 @@
+<%- include('../header.ejs') %>
+
+<div class="w3-container w3-padding-16">
+    <br><br>
+    <h2>
+     Schemas
+    </h2>
+        <form action="" method="post" class="w3-container">
+            <label>Sections</label>
+            <input class="w3-input" list="_schemas" name="schema" id="schema"  value="" required>
+            <datalist id="_schemas" style="width:150px;">
+                <option>
+            </datalist> 
+            <br><br>
+            <label>Type:</label>
+			<select class="w3-select" name="htmltype" id="htmltype" required>
+                <option value="text" selected>text
+                <option value="number">number
+                <option value="radio" >radio
+                <option value="checkbox" >checkbox
+                <option value="reset" >reset
+                <option value="password" >password
+                <option value="select" >select
+                <option value="textarea" >textarea
+                <option value="button" >button
+                <option value="email" >email
+                <option value="date" >date
+                <option value="tel" >tel
+                <option value="array" >array
+                <option value="hidden" >hidden
+                <option value="file" >file
+                <option value="dropdown" >dropdown
+                <option value="timestamp" >timestamp
+            </select>
+            <br><br>
+            <label>SQL Type:</label>
+                <select class="w3-select" name="sql" id="sql" required>
+                    <option value="text" selected >text
+                    <option value="integer">integer
+                    <option value="real" >real
+                    <option value="blob" >blob
+                </select>
+                <br><br>
+                <label>Display Label:</label>
+                    <input class="w3-input" type="text" name="lablel" id="lablel" value="" placeholder="Display label"/> <br><br> 
+                <label>Field Name:</label>
+                    <input class="w3-input" type="text" name="fieldName" id="fieldNname" value=""  placeholder="Field name"/> <br><br>
+                <label>Field Id:</label>
+                    <input class="w3-input" type="text" name="idName" id="idName" value="" placeholder="Field id"/> <br><br>
+                <label>Field Length:</label>
+                    <input class="w3-input" type="text" name="fieldLength" id="fieldLength" value="" placeholder="Field length in px"/> <br><br>
+                <label>Required:</label>
+                    <select class="w3-select" name="required" id="required">
+                        <option value="" >
+                        <option value="required"  selected>required
+                    </select>
+                <br><br>
+                <label>Field Order:</label>
+                    <input class="w3-input" type="number" name="fieldOrder" id="fieldOrder" value="" placeholder="Field Order"/> <br><br> 
+               <label>Initial value:</label>
+                    <input class="w3-input" type="text" name="initialValue" id="initialValue" value="" placeholder="JSON format: Arrays '[{field1:collection,field2:type,..}]'' or Dropdown '{field:collection}' "/>
+                    <br><br>
+                <label>Class Name:</label>
+                    <input class="w3-input" type="text" name="className" id="className" value="" placeholder="Class name"/> <br><br>  
+                <label>Style Script:</label>
+                    <input class="w3-input" type="text" name="styleScript" id="styleScript" value="" placeholder="Style script"/> <br><br> 
+                <label>Event:</label>
+                    <select class="w3-select" name="fieldEvent" id="fieldEvent">
+                        <option value="">
+                        <option value="onchange" >onchange
+                        <option value="onfocus" >onfocus
+                        <option value="onblur" >onblur
+                        <option value="onreset" >onreset
+                        <option value="onselect" >onselect
+                        <option value="onsubmit" >onsubmit
+                        <option value="oninput" >oninput
+                        <option value="onkeydown" >onkeydown
+                        <option value="onkeypress" >onkeypress
+                        <option value="onkeyup" >onkeyup
+                        <option value="onclick" >onclick
+                        <option value="ondblclick" >ondblclick
+                        <option value="onmouseover" >onmouseover
+                    </select>
+                <br><br>
+                <label>Function Name:</label>
+                    <input class="w3-input" type="text" name="functionName" id="functionName" value="" placeholder="Function name"/> <br><br>  
+                <label>Place Holder:</label>
+                    <input class="w3-input" type="text" name="placeholder" id="placeholder" value="" placeholder="For Dropdown fields 'display:value' JSON syntax"/> <br><br>   
+                 <label>Visible: </label>
+                    <select class="w3-select" name="fieldVisible" id="fieldVisible">
+                        <option>
+                        <option value="yes" selected>Yes
+                        <option value="nn" >No
+                    </select>
+                <br><br>
+                <label>Column Visible: </label>
+                    <select class="w3-select" name="columnVisible" id="columnVisible">
+                        <option>
+                        <option value="yes" selected>Yes
+                        <option value="no">No
+                    </select>
+                <br><br>            
+                    <input type="hidden" name="mode" value="config" />
+                    <input type="hidden" name="edit" value="edit" />        
+                    <input type="hidden" name="id" value="" />
+		        <br><br>
+		            <br>
+                    <input class="w3-button w3-green" type="submit" value="Submit">
+        </form>
+</div>
+
+<%- include('../footer.ejs') %>

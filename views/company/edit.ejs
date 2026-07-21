@@ -1,0 +1,24 @@
+<%- include('../header.ejs') %>
+
+<div class="w3-container w3-padding-16">
+    <p>&nbsp;</p> 
+    <h2>
+        &nbsp; Company
+    </h2>
+    
+    <form action="/company/add/<%= company._id%>" method="POST" class="w3-container">
+        <label for="name">Company Name:</label>
+            <input class="w3-input" type="text" id="companyname" name="companyname" value="<%= company.companyname %>" required>
+        <label for="price">Zip Code :</label>
+            <input class="w3-input" type="number" id="zipcode" name="zipcode"  value="<%= company.zipcode %>" required>
+        <label for="symbol">Symbol:</label>
+            <input class="w3-input" type="text" id="sybol" name="symbol"  value="<%= company.symbol %>" placeholder="Letter abreviation">
+        <input type="hidden" name="mode" id="mode" value="company">
+        <p>
+            
+        <input class="w3-button w3-green" type="submit" value="Submit">
+    </form>
+
+</div>
+
+<%- include('../footer.ejs') %>

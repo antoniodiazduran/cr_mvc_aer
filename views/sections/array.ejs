@@ -1,0 +1,51 @@
+<%- include('../header.ejs') %>
+<div class="w3-padding-32 w3-mobile"></div>
+<h4>&nbsp;<%= title + '/ '%><a href="/sections/<%=section%>"><%=section%></a> </h4>
+<form action="<%=breadcrumbs%>" method="post" class="w3-container"> <!--enctype="multipart/form-data">-->
+        <input 
+            type="hidden" 
+            name="section" 
+            id="section" 
+            value="<%= section %>"
+        >
+        <% Object.entries(sections).forEach((row,dat)=>{ %>
+            <% Object.entries(row).forEach(([a,b],d)=>{ %>
+                <!-- Fields //-->
+                <% Object.entries(b).forEach(([e,f],g)=>{ %>
+                    <!--  Objects inside fields-->
+                    <% if (e.includes(arrayname)) { %>
+                        <b><%=e.substring(6,20)%></b><br> 
+                        <div class="w3-container">
+                        <input type="hidden" id="field" name="field" value="<%=e%>">
+                        <input type="hidden" id="_id" name="_id" value="<%=_id%>">
+                        <table class="w3-table">
+                            <% Object.entries(f).forEach(([h,i],j)=>{ %>
+                                <!-- Key/Value level-->
+                                <tr>
+                                <% Object.entries(i).forEach(([k,l])=>{ %>
+                                    <% if(h==0) {%>
+                                        <% if(l!='date') {%>
+                                        <td><label><%=k%></label><br><input type="<%=l%>" id="f_<%=k%>" name="f_<%=k%>" value=""> </td> 
+                                        <% } else { %>
+                                        <td><label><%=k%></label><br><input type="text" id="d_<%=k%>" name="d_<%=k%>" value="Auto Timestamp" readonly> </td>     
+                                        <% } %>
+                                    <% }else{ %>
+                                        <td><%=l>178000000?new Date(l*1).toISOString():l%></td> 
+                                    <% } %>
+                                <%}); %>  
+                                <% if(h==0) {%>
+                                    <td><input type="submit" id="mode" name="mode" value="Add"></td> 
+                                <% } %>
+                                </tr>
+                            <%}); %>
+                        </table>
+                        </div>  
+                        <br>
+                    <%}%>
+                <%}); %>
+            <%}); %>
+        <%}); %>
+     
+</form>
+
+<%- include('../footer.ejs') %>

@@ -1,0 +1,30 @@
+<%- include('../header.ejs') %>
+
+<div class="w3-padding-16 w3-mobile">
+    <table class="w3-table w3-hoverable" id="list">
+        <thead>
+            <tr class="w3-deep-orange"">
+                <th>Section</th>
+                <th>Fields</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% sections.forEach(section => { %>
+            <tr >
+                <% if(section._id) { %>
+                    <td><a href="/sections/<%= section._id %>"><%= section._id %></a></td>
+                    <td><%= section.totalschema %></td> 
+                    <td><%= section.totalsection %></td> 
+                <% } %> 
+            <%}) %>
+            </tr>
+        </tbody>	
+    </table>
+</div>
+
+<input type="hidden" id="chkbox" name="chkbox">
+
+<script src="/ui/js/filter.js"></script>
+<%- include('../scripts.ejs') %>
+<%- include('../footer.ejs') %>

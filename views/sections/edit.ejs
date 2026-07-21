@@ -1,0 +1,219 @@
+<%- include('../header.ejs') %>
+<div class="w3-padding-32 w3-mobile"></div>
+<h4>&nbsp;<%= title + '/'  + section %></h4>
+<form action="<%=breadcrumbs%>" method="post" class="w3-container" enctype="multipart/form-data">
+        <input 
+            type="hidden" 
+            name="section" 
+            id="section" 
+            value="<%= section %>"
+        >
+        <input type="hidden" name="mode" id="mode" value="data">
+
+        <% schemas.forEach(schm => { %>
+                <p></p>
+                <label><%= schm.lablel %></label>  
+
+                <% if (schm.htmltype=='array') { %>
+                    <div class="w3-container">
+                    <table class="w3-table">
+                    <% sections['array_'+schm.idName].forEach((rows,idx)=>{ %>
+                    <% if(idx==0) {%>
+                        <tr>
+                            <% Object.entries(rows).forEach(([k,v],ix)=>{ %>
+                                <th><%=k%></th>
+                            <%}); %>
+                        </tr>
+                        <%} else { %>
+                        <tr>
+                            <% Object.entries(rows).forEach(([k,v],ix)=>{ %>
+                                <td><%=v>178000000?new Date(v*1).toISOString():v%></td>
+                            <%}); %>
+                        </tr>    
+                        <% } %>
+                        
+                    <% })%>  
+                    </table>
+                    </div>
+                <% } %>
+                
+                <% if(schm.htmltype=='text' || schm.htmltype=='password'  || schm.htmltype=='email' || schm.htmltype=='button') { %>
+                    <input 
+                    class="w3-input" 
+                    type="<%= schm.htmltype %>" 
+                    name="<%= schm.fieldName %>" 
+                    id="<%= schm.idName %>"  
+                    style="width:<%= schm.fieldLength!=0?schm.fieldLength:'' %>px;" 
+                    placeholder="<%= schm.placeholder %>" 
+                    style="<%= schm.styleScript %>" 
+                    value="<%=sections[schm.idName]%>"
+                    <% if(schm.fieldEvent!='') { %> <%=schm.fieldEvent%> = "<%=schm.functionName%>" <% } %> 
+                    <%= schm.required %> 
+                    /> 
+                    <p>
+                <% } %>
+                <% if(schm.htmltype == 'number') { %>
+                    <input 
+                    class="w3-input" 
+                    type="<%= schm.htmltype %>" 
+                    name="<%= schm.fieldName %>" 
+                    id="<%= schm.idName %>"
+                    style="width:<%= schm.fieldLength!=0?schm.fieldLength:'' %>px;" 
+                    placeholder="<%= schm.placeholder %>" 
+                    pattern="[0-9]*" 
+                    style="<%= schm.styleScript %>" 
+                    value="<%=sections[schm.idName]%>"
+                     <% if(schm.fieldEvent!='') { %> <%=schm.fieldEvent%>="<%=schm.functionName%>" <% } %> 
+                    <%= schm.required %> 
+                    /> 
+                    <p>
+                <% } %>
+                <% if(schm.htmltype=='date') { %>
+                    <input 
+                    class="w3-input  <%= schm.className %>" 
+                    type="<%= schm.htmltype %>" 
+                    name="<%= schm.fieldName %>" 
+                    id="<%= schm.idName%>" 
+                    style="width:200px;<%= schm.styleScript %>" 
+                    value="<%=sections[schm.idName]%>"  
+                    <% if(schm.fieldEvent!='') { %> <%=schm.fieldEvent%>="<%=schm.functionName%>" <% } %> 
+                    <%=schm.required%> 
+                    />
+                    <p>
+                <% } %>
+                <% if(schm.htmltype=='tel') { %>
+                    <input 
+                    class="w3-input  <%= schm.className %>" 
+                    type="<%= schm.htmltype %>" 
+                    name="<%= schm.fieldName %>" 
+                    id="<%= schm.idName %>" 
+                    style="width:<%= schm.fieldLength %>px;"  
+                    placeholder="<%= schm.placeholder %>"
+                    value="<%=sections[schm.idName]%>"  
+                     <% if(schm.fieldEvent!='') { %> <%=schm.fieldEvent%>="<%=schm.functionName%>" <% } %> 
+                    <%= schm.required %>
+                    />  
+                    <p>
+                <% } %>
+                <% if(schm.htmltype=='select') { %>
+                    <select class="w3-select" name="<%= schm.fieldName %>" id="<%= schm.idName %>" style="width:150px;">
+                        <% schm.initialValue.split(',').forEach(opti1 => { %>
+                            <option value="<%= opti1 %>" <%=sections[schm.idName]==opti1?'selected':''%>> <%= opti1 %>
+                        <% }); %>
+                    </select>
+                    <p>
+                <% } %>
+                <% if(schm.htmltype=='radio') { %>
+                    <br>
+                    <% schm.initialValue.split(',').forEach(opti2 => { %>
+                        <input 
+                        class="w3-radio" 
+                        type="<%= schm.htmltype %>"
+                        name="<%= schm.fieldName %>" 
+                        id="<%= schm.idName %>" 
+                        value="<%=sections[schm.idName]%>"
+                        <%=sections[schm.idName]==opti2?'selected':''%>
+                        />
+                        &nbsp; 
+                        <%= opti2 %> 
+                        &nbsp;
+                        <p> 
+                    <% }); %>
+                    <p>
+                <% } %>
+                <% if(schm.htmltype=='checkbox') { %>
+                    <br>
+                    <% schm.initialValue.split(',').forEach(opti3 => { %>
+                        <input 
+                        class="w3-checkbox" 
+                        type="<%= schm.htmltype %>" 
+                        name="<%= schm.fieldName %>" 
+                        id="<%= schm.idName %>" 
+                        value="<%=sections[schm.idName]%>"
+                        <%=sections[schm.idName]==opti3?'selected':''%>
+                        />
+                        &nbsp; <%= opti3%> &nbsp;
+                        <p> 
+                    <% }); %>
+                    <p>
+                <% } %>
+                
+                <% if(schm.htmltype=='dropdown') { %>
+                    <select class="w3-select" name="<%= schm.fieldName %>" id="<%= schm.idName %>" style="width:300px">
+                        <option>
+                        <% dropdowns[schm.idName].forEach((ddF) => { %>
+                            <option value="<%= ddF[dropdownValue[schm.idName].split(":")[0]]%>" <%= ddF[dropdownValue[schm.idName].split(":")[0]]==sections[schm.idName]?"selected":""%>><%= ddF[dropdownValue[schm.idName].split(":")[1]] %>
+                        <% }); %>
+                    </select>
+                    <p>
+                <% } %>
+                <% if(schm.htmltype=='textarea') { %>
+                    <textarea class="w3-input" cols="40" rows="5" name="<%= schm.fieldName %>" id="<%= schm.idName %>"><%= sections[schm.idName]%></textarea>
+                    </h4>
+                    <p>
+                <% } %>
+                <% if(schm.htmltype=='join') { %>
+                    <select class="w3-select" name="<%= schm.fieldName %>" id="<%= schm.idName %>" style="width:300px">
+                        <option>
+                        <% joinFields.forEach(joinF => { %>
+                            <!--<option value="{{@joinF.id %>">{{@joinF.linked}}//-->
+                            <option value="<%= joinF.linked %>"><%= joinF.linked%>
+                        <% }); %>
+                    </select>
+                    <p>
+                <% } %>
+               
+                <% if(schm.htmltype=='params') { %> 
+                    <input 
+                    class="w3-hidden" 
+                    type="hidden" 
+                    name="<%= schm.fieldName%>" 
+                    id="<%= schm.idName%>" 
+                    value="<%=sections[schm.idName]%>" 
+                    <%= schm.required%> 
+                    >       
+                <% } %>
+                <% if(schm.htmltype=='timestamp') { %> 
+                    <input 
+                    class="w3-hidden" 
+                    type="hidden" 
+                    name="<%= schm.fieldName%>" 
+                    id="<%= schm.idName%>" 
+                    value="<%=sections[schm.idName]%>" 
+                    <%= schm.required%> 
+                    >       
+                <% } %>
+                <% if(schm.htmltype=='file') { %>
+                    <input class="w3-input" type="<%= schm.htmltype%>" name="file_<%= schm.fieldName%>" id="file_<%= schm.idName%>">
+                    <div class="w3-container">
+                    <table class="w3-table">
+                    <tr>
+                        <th>Date</th>
+                        <th>File Name</th>
+                    </tr>     
+                    <% if(sections['file_'+schm.idName]) { %>
+                    <% sections['file_'+schm.idName].forEach((files,idx)=> {%>
+                        <tr>
+                            <td><%= new Date(Number(files.tdate)).toISOString() %></td>  
+                            <td><a href="<%=files.filename %>"><%= files.realname%></a></td>
+                        </tr>
+                    <% }); %>
+                    <% } %>
+                </table>
+                <% } %>
+                <p>
+        <% }); %>
+       
+       
+        <p class="w3-padding-16"></p>
+        <% if(mode == 'new') {  %>
+            <input class="w3-button w3-green" type="submit" value="Submit">
+        <% } else { %>
+            <input class="w3-button w3-green" type="submit" value="Update">
+	    <% } %>
+       
+	<br><br>
+        
+</form>
+
+<%- include('../footer.ejs') %>

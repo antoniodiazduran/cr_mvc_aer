@@ -1,0 +1,24 @@
+<%- include('../header.ejs') %>
+
+    <h1>Edit Product</h1>
+    <p><small>Modifying Document ID: <%= product._id %></small></p>
+    
+    <form action="/products/edit/<%= product._id %>" method="POST">
+        <div class="form-group">
+            <label for="name">Product Name:</label>
+            <input type="text" id="name" name="name" value="<%= product.name %>" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Price ($):</label>
+            <input type="number" id="price" name="price" step="0.01" value="<%= product.price %>" required>
+        </div>
+        <div class="form-group">
+            <label for="stock">Stock Quantity:</label>
+            <input type="number" id="stock" name="stock" value="<%= product.stock %>">
+        </div>
+        <button type="submit">Update Changes</button>
+    </form>
+
+    <a href="/products" class="back-link">← Cancel and Go Back</a>
+
+<%- include('../footer.ejs') %>

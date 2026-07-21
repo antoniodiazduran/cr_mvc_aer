@@ -1,0 +1,78 @@
+<script>
+
+  // 1. Create the index once
+  const table = document.querySelector('#list tbody');
+  const rows = Array.from(table.rows);
+  const headers = document.querySelector('#list');
+  const headerRow = headers.tHead.rows[0];
+  const columnLabels = Array.from(headerRow.cells).map(cell => cell.innerText);
+
+  Object.keys(columnLabels).forEach((key) => { columnLabels[key] = columnLabels[key]=1; });  
+
+  // Map rows to an object containing the DOM reference and a searchable string
+  const tableIndex = rows.map(row => ({
+    element: row,
+    text: row.textContent.toLowerCase() 
+  }));
+
+  // slow down the character search
+  let debounceTimer;
+  const filter = document.querySelector('#searchf');
+  filter.addEventListener('input', (e) => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => fastFilter(e.target.value), 150);
+  });
+
+function buttonArrays(arrayname) {
+	val = window.document.getElementById('chkbox').value;
+  const uri = window.location.pathname.split("/");
+    if(val.length>0) {
+      idx = val.split(",");
+      if (uri.length==3) {
+        urle = "/"+uri[1]+"/array/"+uri[2]+"/"+idx[0]+"/"+arrayname;
+      }
+      window.open(urle,"_blank");
+    } else {
+    	alert('Select something... Please!');
+    }
+}
+function buttonEdit() {
+	val = window.document.getElementById('chkbox').value;
+  const uri = window.location.pathname.split("/");
+    if(val.length>0) {
+      idx = val.split(",");
+      if (uri.length==2) {
+        urle = "/"+uri[1]+"/edit/"+idx[0];
+      } 
+      if (uri.length==3) {
+        urle = "/"+uri[1]+"/edit/"+uri[2]+"/"+idx[0];
+      }
+      window.open(urle,"_blank");
+    } else {
+    	alert('Select something... Please!');
+    }
+}
+
+function getCheckboxValue(va) {
+	strw = window.document.getElementById('chkbox').value;
+  const editRecord = window.document.getElementById("edit");
+  const chkBoxID = window.document.getElementById('chkbox');
+
+	if (va.checked) { 
+	  console.log('checked');
+    if (!strw.includes(va.value)) {
+      chkBoxID.value += va.value +",";
+      strw += va.value+",";
+      if(editRecord) { editRecord.style.display="block"; }
+    }
+	} else { 
+    console.log('unchecked');
+    strw = strw.replace(va.value+',',''); 
+    chkBoxID.value = strw;		
+	}
+	if (!strw.length) { editRecord.style.display="none" }
+
+  console.log('v:'+chkBoxID.value);
+  console.log('f:'+strw);
+}
+</script>

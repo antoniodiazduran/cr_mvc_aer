@@ -1,0 +1,43 @@
+<%- include('../header.ejs') %>
+<br><br>
+<h3>&nbsp; <%=section%> 
+    <a href="<%=breadcrumbs%>/add/<%=section%>"><i class="material-icons">add</i></a></h3>
+</h3>
+<div class="w3-padding-16 w3-mobile">
+    <table class="w3-table w3-hoverable" id="list">
+        <thead>
+            <tr class="w3-deep-orange">
+            <% headers.forEach(key => { %>
+                <th><%= key.lablel %></th> 
+            <% }) %> 
+            <th></th>
+            <th></th>
+        </thead>
+        <tbody>
+            <% sections.forEach(docs=> {%>
+            <tr>
+                <% columns.forEach(key=> {%>
+                   <% if (key.substring(0,6) !='array_') { %>
+                    <td><%= docs[key] %> </td>
+                   <% } else { %>
+                    <td> <a href="/sections/array/<%=docs.section%>/<%=docs._id%>/<%= key.replace('array_','') %>"><i class="material-icons">add</i> %></a></td>
+                   <% } %> 
+                <% }) %>
+                <td><input type="checkbox" name="checkEdit" id="checkEdit" value="<%=docs._id%>" onClick="getCheckboxValue(this)"></td>
+                <td>&nbsp; &nbsp;</td>
+            </tr>
+
+            <% }) %>
+        </tbody>	
+    </table>
+</div>
+
+<input type="hidden" id="sect" name="sect" value="<%=section%>">
+<input type="hidden" id="chkbox" name="chkbox">
+<script>
+    document.getElementById("add").style.display="none";
+</script>
+<script src="/ui/js/filter.js"></script>
+
+<%- include('../scripts.ejs') %>
+<%- include('../footer.ejs') %>

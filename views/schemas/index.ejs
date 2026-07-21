@@ -1,0 +1,64 @@
+<%- include('../header.ejs') %>
+
+<div class="w3-padding-16">
+    <table class="w3-table w3-hoverable" id="list">
+        <thead>
+            <tr class="w3-deep-orange"">
+                <th>section</th>
+                <th>HTML type</th>
+                <th>SQL type</th>
+                <th>Label</th>
+                <th>Name</th>
+                <th>ID Name</th>
+                <th>Length</th>
+                <th>Required</th>
+                <th>value</th>
+                <th>class</th>
+                <th>style</th>
+                <th>event</th>
+                <th>function</th>
+                <th>placeholder</th>
+                <th>joins</th>
+                <th>order</th>
+                <th>Field visible</th>
+                <th>Column visible</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% schemas.forEach(schema => { %>
+            <tr >
+                <td><%= schema.schema %></td>
+                <td><%= schema.htmltype %></td>
+                <td><%= schema.sql %></td>
+                <td><%= schema.lablel %></td>
+                <td><%= schema.fieldName %></td>
+                <td><%= schema.idName %></td>
+                <td><%= schema.fieldLength %></td>
+                <td><%= schema.required %></td>
+                <td><%= schema.initialValue %></td>
+                <td><%= schema.className %></td>
+                <td><%= schema.styleScript %></td>
+                <td><%= schema.fieldEvent %></td>
+                <td><%= schema.functionName %></td>
+                <td><%= schema.placeholder %></td>
+                <td><%= schema.joinTable %></td>
+                <td><%= schema.fieldOrder %></td>
+                <td><%= schema.fieldVisible %></td>
+                <td><%= schema.columnVisible %></td>
+                <td><input type="checkbox" name="choosedate" value="<%= schema._id%>" onClick="getCheckboxValue(this)"></td>
+                <% }) %>
+            </tr>
+        </tbody>	
+    </table>
+</div>
+
+
+<input type="hidden" id="sect" name="sect" value="<%=section%>">
+<input type="hidden" id="chkbox" name="chkbox">
+<script>
+    document.getElementById("add").style.display="block";
+</script>
+<script src="/ui/js/filter.js"></script>
+<%- include('../scripts.ejs') %>
+<%- include('../footer.ejs') %>

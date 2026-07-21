@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title%></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="/ui/css/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    </head>
+<body class="w3-small">
+
+<style>
+  .fixed-search {
+	position: fixed;
+	top: 45px;
+	left: 0;
+	right: 0;
+	background-color: white;
+	padding: 10px;
+	height: 40px;
+	z-index: 1000;
+  }
+</style>
+
+<% if (navs=='yes') { %> 
+    <%- include('menus.ejs')%>
+<% } %>
+<% if (search=='yes') { %> 
+    <%- include('search.ejs')%>
+<% } %>
