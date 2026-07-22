@@ -8,6 +8,7 @@ exports.getMainPage = async (req, res) => {
         res.render('page/index', { 
             mainPhrase,         
             title: 'ArmandoEReyes',
+            menus: 'yes',
         });
     } catch (error) {
         res.status(500).send('Error loading page: ' + error.message);

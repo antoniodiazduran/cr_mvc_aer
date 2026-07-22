@@ -1,26 +1,8 @@
  <div class="w3-top w3-bar w3-black w3-rest" id="mainMenu" style="font-size:18px; text-align:right; vertical-align:bottom;">
-     <div class="w3-bar-item"><i class="material-icons">home</i></div>
-     <div class="w3-bar-item"><a href="/sections"><i class="material-icons">folder</i></a></div>
-     <div class="w3-bar-item"><a href="/schemas"><i class="material-icons">settings</i></a></div>
-   <!--
-        <div class="w3-bar-item"><i class="material-icons">key</i></div>
-        <div class="w3-bar-item"><i class="material-icons">attach_file</i></div>
-        <div class="w3-bar-item"><i class="material-icons">person</i></div>
-        
-        <div class="w3-bar-item"><i class="material-icons">file_download</i></div>
-        <div class="w3-bar-item w3-right"><i class="material-icons">logout</i></div>
-   -->     
-    <span class="w3-right"> <%= rowcount%></span>
-    <div class="w3-bar-item w3-right" style="display:none" id="add"><a href="<%=breadcrumbs%>/add"><i class="material-icons">add</i></a></div>        
-        <div style="display:none" id="edit">
-            <div class="w3-bar-item w3-right" id="editrc"><a href="" onClick="buttonEdit();"><i class="material-icons" >edit</i></a></div>  
-         
-            <% if(typeof nArrays !== 'undefined') {%>
-                <% Object.values(nArrays).forEach((doc)=>{ %>
-                    <%let names = doc.split(",");%>
-                    <div class="w3-bar-item w3-right" id="<%=names[0]%>"><a href="" title="<%=names[0]%>" onClick="buttonArrays('array_<%=names[0]%>');"><i class="material-icons" ><%=names[1]%></i></a></div>  
-                <% }); %>
-            <% } %>
-        </div>
-        
+		<a href="/" class="w3-bar-item w3-button" title="Home"><i class="material-icons">home</i></a>
+		<!-- 
+        <a href="/phrases" class="w3-bar-item w3-button" title="Phrases"><i class="material-icons">menu_book</i></a>
+        <a href="/login" class="w3-bar-item w3-button w3-right"><i class="material-icons">key</i></a> 
+        -->
 </div>
+

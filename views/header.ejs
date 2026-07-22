@@ -13,10 +13,9 @@
   </head>
 
   <body>
-	<div class="w3-bar w3-black w3-mobile">
-		<a href="/" class="w3-bar-item w3-button" title="Home"><i class="material-icons">home</i></a>
-		<a href="/phrases" class="w3-bar-item w3-button" title="Phrases"><i class="material-icons">menu_book</i></a>
-        <a href="/login" class="w3-bar-item w3-button w3-right"><i class="material-icons">key</i></a>
-		
-    </div>
+
+    <%if (menus=='yes') {%>
+        <%- include('menus.ejs')%>
+    <%}%>
+
    
