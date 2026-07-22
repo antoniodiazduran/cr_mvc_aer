@@ -6,7 +6,7 @@ const sendEmailMessage = require('../config/email');
 
 async function getCollection() {
     const db = await connectDB();
-    return db.collection('purchasing');
+    return db.collection('aer');
 }
 
 const Section = {

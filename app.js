@@ -10,6 +10,7 @@ const fileUpload = require('express-fileupload');
 // routes
 const schemaRoutes = require('./routes/schemaRoutes');
 const sectionRoutes = require('./routes/sectionRoutes');
+const pageRoutes = require('./routes/pageRoutes');
 
 
 const app = express();
@@ -35,6 +36,7 @@ app.use(fileUpload({
 // 3. Mount Routes
 app.use('/', schemaRoutes);
 app.use('/', sectionRoutes);
+app.use('/', pageRoutes);
 
 // 4. Start Server
 async function startServer() {

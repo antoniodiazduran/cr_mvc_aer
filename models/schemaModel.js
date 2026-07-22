@@ -4,7 +4,7 @@ const connectDB = require('../config/db');
 
 async function getCollection() {
     const db = await connectDB();
-    return db.collection('purchasing');
+    return db.collection('aer');
 }
 
 const Schema = {

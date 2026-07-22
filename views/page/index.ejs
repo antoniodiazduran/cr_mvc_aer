@@ -1,0 +1,138 @@
+<%- include('../header.ejs') %>
+
+<!-- Page Content -->
+<br>
+<div class="w3-container w3-white">
+	<div class="w3-row w3-white">
+		<div class="w3-col l12 m12 s12 w3-white w3-center">
+			<img src="/ui/images/aer2.jpeg" class="w3-image w3-round"/>
+		</div>
+	</div>
+</div>
+<div class="w3-padding-32"><br></div>
+<div class="w3-container w3-center w3-gray w3-padding-16">
+	<div class="w3-content w3-section" style="max-width:80%">
+	  <span id="phrase" style="font-size:1.5em;"><%= mainPhrase[0].Phrase %></span><br>
+	  <span id="tdate" style="color:white; font-size:1em;"> <%= mainPhrase[0].TransactionDate %></span>
+	</div>
+</div>
+<div class="w3-container w3-panel w3-orange w3-center">
+<h2>Obtenga la copia del libro <a href="/ui/images/aerbook.pdf">aqui</a></h2>
+</div>
+
+<div class="w3-container w3-center w3-padding-64" style="margin-left:10%; margin-right:10%;">
+<h3 style="color:maroon; font-weight:bold;">Armando E. Reyes</h3>
+<h4 style="color:gray;" >Ingeniero Mec&aacutenico</h4>
+<h4 style="color:black;" >Instituto Tecnol&oacutegico de Durango</h4>
+</div>
+
+<div class="w3-row" style="margin-left: 10%;margin-right:10%">
+<h3 style="color:maroon;">Al inicio</h3>
+<h4>Nac&iacute; en la ciudad de Durago, M&eacute;xico al pie de la Sierra Madre Occidental.
+<p>
+A finales de los 70's estudi&eacute; en el Instituto Tecnol&oacute;gico de Durango y obtuve con honores el t&iacute;tulo de Ingeniero Mec&aacute;nico. 
+<p>
+Cuando vivia en la ciudad de M&eacute;xico, logr&eacute mi posgrado en Administraci&oacute;n de Empresas en la gran Universidad Aut&oacute;noma de M&eacute;xico.
+</h4>
+</div>
+
+<div class="w3-row" style="margin-left: 10%;margin-right:10%">
+<h3 style="color:maroon;">En lo profesional</h3>
+<h4>
+La mayor parte de mi vida profesional trabaj&eacute; para la misma compa&ntilde;&iacute;a, inicialmente propiedad del Grupo Penoles, en varias ciudades de M&eacute;xico. 
+<p>
+Empez&eacute; trabajando como soporte a ventas para despues obtener varios puestos gerenciales en Ventas y Operaciones hasta llegar a la Vice Presidencia de Ventas de M&eacute;xico, Centro Am&eacute;rica,  Sur Am&eacute;rica y el Caribe en la ciudad de Pittsburgh, PA con Harbison Walker y RHI.
+</h4>
+</div>
+
+<div class="w3-row" style="margin-left:10%;margin-right:10%">
+<h3 style="color:maroon;">Logros</h3>
+<h4>
+Estando en M&eacute;xico tuve el privilegio de administrar las operaciones de tres compan&iacute;as, excediendo los margenes de utilidad y ventas. 
+<p>
+Cuando en los 90's la tecnolog&iacute;a empezo a evolucionar, fu&iacute; el primero en la compan&iacute;a donde mi planeaci&oacute;n y agenda se encontraban electronicamente en una Palm Pilot y una computadora port&aacute;til.
+<p>
+Hoy, dentro de mis actividades cotidianas, soy miembro activo del coro sinf&oacute;nico del Teatro Angela Peralta en la ciudad de Mazatl&aacute;n, Sinaloa. Soy barista, panadero y surfeador de olas altas, frecuentemente visito la ciudad de M&eacute;xico y la ciduad de Lima, Per&uacute; en mi patin el&eacute;ctrico (evito el tr&aacute;fico).
+<p>
+En mi tiempo libre, trato de escribir mis pensamientos y dejarlos en blanco y negro para mis hijos y nietos.
+</h4>
+</div>
+
+<div class="w3-padding-32"><br></div>
+<div class="w3-container" style="margin-left:10%; margin-right:10%;">
+<h3 style="color:maroon;">En que puedo ayudar?</h3>
+<iframe name="contacts" style="display:none;"></iframe>
+<form class="w3-container" method="post" action="/contacts/new" target="_blank">
+	<p>
+	<label>Nombre</label>
+	<input class="w3-input" type="text" name="ContactName" id="ContactName" onkeyup="checkEntry();" placeholder="Nombre" required/></p>
+	<p>
+	<label>Telefono</label>
+	<input class="w3-input" type="text" name="Phone" id="Phone" onkeyup="checkEntry();" placeholder="+X XXX-XXX-XXXX" required/></p>
+	<p>
+	<label>Correo Electronico</label>
+	<input class="w3-input" type="text" name="Email" id="Email" onkeyup="checkEntry();" placeholder="usuario@dominio" required/></p>
+	<p>
+	<label>Tema</label>
+	<select class="w3-select" name="Topics" id="Topics" style="width:200px;">
+	<option>
+	<option>Finanzas
+	<option>Carrera
+	<option>Inteligencia Emocional
+	<option>Platica
+	<option>Conferencia
+	</select>
+	</p>
+	<input type="hidden" name="session_csrf" value="2yr4c1bw6rqc4" />
+	<input type="hidden" id="new" name="new" value="new">
+	<input class="w3-button w3-black" type="submit" name="mode" id="mode" value="Submit">
+</form>
+<div class="w3-panel">
+
+</div>
+
+</div>
+
+<script>
+ var complete = { ContactName: 0, Phone: 0, Email: 0};
+ const entries = { ContactName:"^[^0-9]+$",
+		  Phone:"[+]\\d{1,2}\\s\\d{3}[-,\\s]\\d{3}[-,\\s]\\d{4}",
+		  Email:"^(([^<>()[\\]\\.,;:\\s@\\\"]+(\\.[^<>()[\\]\\.,;:\\s@\\\"]+)*)|(\\\".+\\\"))@(([^<>()[\\]\\.,;:\\s@\\\"]+\\.)+[^<>()[\\]\\.,;:\\s@\\\"]{2,})$"
+		};
+
+ document.getElementById('mode').disabled = true;
+
+function enableSubmit() {
+	var sbm = 0;
+	Object.keys(complete).forEach(function(key){
+		sbm += complete[key];	
+	});
+	if(sbm == 3) { document.getElementById('mode').disabled = false; }
+	else { document.getElementById('mode').disabled = true; }
+}
+
+function validInput(ids,res) {
+	if(!res) {
+		ids.style.color = 'red';
+	} else {
+		ids.style.color = 'black';
+	}
+}
+
+function checkEntry() {
+	Object.keys(entries).forEach(function(key){
+		var regex = new RegExp(`${entries[key]}`,"g");
+		var str = document.getElementById(key);
+	if (str.value != '') {
+		var result = regex.test(str.value);
+		if (result) { complete[key] = 1; } else { complete[key] = 0; }
+		validInput(str,result);
+	}
+
+	}); 
+	enableSubmit();
+}
+
+</script>
+
+<%- include('../footer.ejs') %>
