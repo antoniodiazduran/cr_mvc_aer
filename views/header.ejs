@@ -7,15 +7,17 @@
         <meta name="description" content="Armando E Reyes Mexico Live Coach">
         <meta name="keywords" content="armando reyes, live coach, mazatlan, mexico, peru, lima, dinero, finanzas, ahorro, felicidad, estabilidad, familia">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <base href="https://www.armandoereyes.com:443/">
+       <!-- <base href="https://www.armandoereyes.com:443/"> -->
         <link rel="stylesheet" href="/ui/css/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
 
   <body>
 
-    <%if (menus=='yes') {%>
+    <%if (navs=='yes') {%>
         <%- include('menus.ejs')%>
     <%}%>
-
+    <%if (search=='yes') {%>
+        <%- include('search.ejs')%>
+    <%}%>   
    
