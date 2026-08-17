@@ -1,5 +1,5 @@
 // app.js
-require('dotenv').config();
+//require('dotenv').config();
 
 // Drivers and modules
 const express = require('express');
@@ -14,7 +14,7 @@ const pageRoutes = require('./routes/pageRoutes');
 
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 // 1. Set up EJS View Engine
 app.set('view engine', 'ejs');

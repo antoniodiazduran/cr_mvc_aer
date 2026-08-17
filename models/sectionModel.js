@@ -1,8 +1,8 @@
 // models/sectionModel.js
 const { ObjectId } = require('mongodb');
 const connectDB = require('../config/db');
-const sendTextMessage = require('../config/sms');
-const sendEmailMessage = require('../config/email');
+//const sendTextMessage = require('../config/sms');
+//const sendEmailMessage = require('../config/email');
 
 async function getCollection() {
     const db = await connectDB();
@@ -116,7 +116,7 @@ const Section = {
         //console.log(owner[0]['requestor']);
 
         // Communicating changes to owner
-        const sms = await sendTextMessage(owner[0]['requestor'],'+18333507932',"Record updated http://35.209.35.43:3030/sections/edit/"+form.section+"/"+form._id);
+        //const sms = await sendTextMessage(owner[0]['requestor'],'+18333507932',"Record updated http://35.209.35.43:3030/sections/edit/"+form.section+"/"+form._id);
         //const email = await sendEmailMessage('antonio.diaz@revgroup.com,kevin.kraus@revgroup.com','note1','test1');
         
         // Sending results to page
