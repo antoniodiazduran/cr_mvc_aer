@@ -1,7 +1,7 @@
 {
-  "name": "mvc_mongodb",
+  "name": "cr_mvc_aer",
   "version": "1.0.0",
-  "description": "MongoDB website",
+  "description": "AER website",
   "license": "ISC",
   "author": "",
   "type": "commonjs",
